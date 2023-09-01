@@ -79,6 +79,39 @@ const Update = (props) => {
     </article>
 }
 
+/*
+Delete 기능을 구현해보자
+
+===>
+
+delete 기능은 페이지 이동이 필요 없으므로 별도의 컴포넌트를 생성할 필요가 없다.
+간단히 버튼을 추가하고 onClick 이벤트에 삭제 기능을 구현하면 된다.
+
+일반적으로 삭제 기능은 상세페이지 내부에서 발생하므로, 'READ' 모드일 때 contextControl을 수정하면 된다.
+제목이 없는 태그를 사용하는 이유는 리액트에서 태그를 그룹화하기 위함이다.
+리액트에서는 하나의 태그 안에 들어가야 하기 때문에, 제목이 없는 태그를 사용하여 복수의 태그를 그룹화할 수 있다.
+
+contextControll =  <>
+          <li><a href={'/update/'+id} onClick={event => {
+          event.preventDefault();
+          setMode('UPDATE');
+        }
+      }>Update</a></li>
+       <input type="button" value="Delete" onClick={ () => {
+           const newTopics = [];
+           for(let i=0; i<topics.length; i++) {
+               if(topics[i].id !== id) {
+                   newTopics.push(topics[i]);
+               }
+           }
+
+           setTopics(newTopics);
+           setMode('WELCOME');
+        }
+       }/>
+</>
+
+*/
 const App = () => {
   const [mode, setMode] = useState('WELCOME');
   const [id, setId] = useState(null);
